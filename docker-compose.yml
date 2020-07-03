@@ -1,0 +1,55 @@
+version: "2.1" # change to 2.1 for pi
+
+volumes:
+  mariadb-data:
+
+services:
+  
+  alpine-nginx-php-container:
+    build:
+      context: ./
+      dockerfile: ./nginx-php.Dockerfile
+    container_name: alpine-nginx-php-container
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      TZ: "Europe/London"
+      PHP_ERRORS: 1
+      PHP_POST_MAX_SIZE: 250
+      PHP_UPLOAD_MAX_FILESIZE: 250
+    # remove the volume when using pi
+    volumes:
+      - .:/var/www/html
+
+  wpe:
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.wpe
+    privileged: true
+    ports:
+      - "8080:8080"
+    command: bash -c "echo 'sleeping for 60' && sleep 60 && /wpe-init"
+    container_name: wpe
+    depends_on:
+      - alpine-nginx-php-container
+
+  honestybar-mariadb:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.mariadb
+    container_name: honestybar-mariadb
+    working_dir: /application
+    volumes:
+      - mariadb-data:/config/databases
+    #volumes:
+    #  - ./mariadb-data:/config/databases
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=honesty
+      - MYSQL_USER=oli
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - "7072:3306"
