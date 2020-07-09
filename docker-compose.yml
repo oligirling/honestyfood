@@ -1,4 +1,4 @@
-version: "2.1" # change to 2.1 for pi
+version: "2.1"
 
 volumes:
   mariadb-data:
@@ -19,8 +19,8 @@ services:
       PHP_POST_MAX_SIZE: 250
       PHP_UPLOAD_MAX_FILESIZE: 250
     # remove the volume when using pi
-    volumes:
-      - .:/var/www/html
+    #volumes:
+    #  - .:/var/www/html
 
   wpe:
     restart: always
@@ -31,25 +31,24 @@ services:
     ports:
       - "8080:8080"
     command: bash -c "echo 'sleeping for 60' && sleep 60 && /wpe-init"
-    container_name: wpe
     depends_on:
       - alpine-nginx-php-container
 
-  honestybar-mariadb:
+  honestyfood-mariadb:
     build:
       context: ./
       dockerfile: ./Dockerfile.mariadb
-    container_name: honestybar-mariadb
+    container_name: honestyfood-mariadb
     working_dir: /application
     volumes:
       - mariadb-data:/config/databases
-    #volumes:
     #  - ./mariadb-data:/config/databases
+    #command: bash -c "echo 'sleeping' && sleep 30 && echo 'creating' && /usr/bin/mysql -proot -e 'CREATE DATABASE IF NOT EXISTS honestyfood character set UTF8mb4 collate utf8mb4_bin;' && echo 'importing' && /usr/bin/mysql -proot honestyfood < /application/create-tables.sql"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=honesty
+      - MYSQL_DATABASE=honestyfood
       - MYSQL_USER=oli
       - MYSQL_PASSWORD=password
       - MYSQL_ROOT_HOST=%
     ports:
-      - "7072:3306"
+      - "7074:3306"

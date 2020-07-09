@@ -1,0 +1,118 @@
+.hotdoger .unit {
+    margin: 0 60px;
+    text-align: center;
+}
+.hotdoger h3 {
+    margin: 2em 0;
+    font-family: 'Fjalla One', sans-serif;
+    font-style: italic;
+    color: #650818;
+}
+.hotdog-unit {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    /*-webkit-animation: floating 2s ease infinite;
+    animation: floating 2s ease infinite;*/
+}
+.hotdog {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    width: 40px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: grey;
+    border-left: solid 8px grey;
+}
+.bread {
+    box-sizing: border-box;
+    position: relative;
+    width: 36px;
+    height: 180px;
+    background-color: black;
+}
+.bread.left {
+    margin-right: -6px;
+    border-radius: 50px 0 0 50px;
+    border-left: 8px solid black;
+}
+.bread.right {
+    margin-left: -6px;
+    border-radius: 0 50px 50px 0;
+    border-right: 8px solid black;
+}
+
+.mustard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    left: -8px;
+}
+.mustard:before,
+.mustard:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0%;
+    right: 10%;
+    bottom: 0%;
+    left: 10%;
+    background-repeat: repeat-y;
+}
+.mustard:before {
+    left: 48%;
+    background-size: 16px 44px;
+    background-image: none;
+}
+.mustard:after {
+    left: 8px;
+    right: 48%;
+    background-size: 16px 44px;
+    background-image: none;
+    background-position: 0 22px;
+}
+.mustard.change:after, .mustard.change:before {
+    background-image: radial-gradient(circle at 0px 16px, transparent 6px, #f2b101 6px, #f2b101 11px, #febe10 11px, #febe10 16px, transparent 16px)
+}
+.mustard.change:before {
+    background-image: radial-gradient(circle at 0px 16px, transparent 6px, #f2b101 6px, #f2b101 11px, #febe10 11px, #febe10 16px, transparent 16px);
+}
+.mustard.change:after {
+    background-image: radial-gradient(circle at 16px 16px, transparent 6px, #febe10 6px, #febe10 11px, #f2b101 11px, #f2b101 16px, transparent 16px);
+}
+
+@-webkit-keyframes floating {
+    0% {
+        -webkit-transform: rotate(0deg) translateY(2px);
+        transform: rotate(0deg) translateY(2px);
+    }
+    50% {
+        -webkit-transform: rotate(0deg) translateY(15px);
+        transform: rotate(0deg) translateY(15px);
+    }
+    100% {
+        -webkit-transform: rotate(0deg) translateY(2px);
+        transform: rotate(0deg) translateY(2px);
+    }
+}
+@keyframes floating {
+    0% {
+        -webkit-transform: rotate(0deg) translateY(2px);
+        transform: rotate(0deg) translateY(2px);
+    }
+    50% {
+        -webkit-transform: rotate(0deg) translateY(15px);
+        transform: rotate(0deg) translateY(15px);
+    }
+    100% {
+        -webkit-transform: rotate(0deg) translateY(2px);
+        transform: rotate(0deg) translateY(2px);
+    }
+}

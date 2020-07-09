@@ -32,11 +32,10 @@ class Person
     public static function addPerson(array $data)
     {
         $db = Db::instance();
-        return $db->run('INSERT INTO people (`barcode`, `first_name`, `last_name`, `gender`) VALUES (?, ?, ?, ?)', [
+        return $db->run('INSERT INTO people (`barcode`, `first_name`, `last_name`) VALUES (?, ?, ?)', [
             $data['barcode'],
             $data['fname'],
             $data['lname'],
-            $data['gender'],
             ]
         );
     }
@@ -48,7 +47,6 @@ class Person
         $this->setId($result->id);
         $this->setFirstName($result->first_name);
         $this->setSecondName($result->last_name);
-        $this->setGender($result->gender);
     }
 
     /**
@@ -129,31 +127,5 @@ class Person
     public function setDrinks(int $drinks)
     {
         $this->drinks = $drinks;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGender(): string
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param string $gender
-     */
-    public function setGender(string $gender)
-    {
-        $this->gender = $gender;
-    }
-
-    public function isMale()
-    {
-        return $this->gender === 'm';
-    }
-
-    public function isFemale()
-    {
-        return $this->gender === 'f';
     }
 }
