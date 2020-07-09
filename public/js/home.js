@@ -1,6 +1,5 @@
-$(document).ready(function() {
-    $("#user-barcode").focus();
-});
+$("#user-barcode").focus();
+$("#user-barcode").triggerHandler( "focus" );
 
 $( "form#scan-user" ).submit(function( event ) {
     event.preventDefault();
@@ -60,6 +59,27 @@ $( "form#scan-food" ).submit(function( event ) {
                 refreshPage(8000);
             });
         });
+    });
+});
+
+$( "#reset-consumption" ).on( "click", function(e) {
+    e.preventDefault();
+    $( "#reset-consumption" ).hide();
+    $( "#reset-consumption-yes" ).show();
+});
+
+$( "#reset-consumption-yes" ).on( "click", function(e) {
+    e.preventDefault();
+    $.get(
+        "ajax/reset-consumption.php",
+    ).done( function(data) {
+        let dataObj = JSON.parse(data);
+        if(dataObj.status === 'failed') {
+            $( "#reset-consumption-yes" ).text(data.message)
+        } else {
+            $( "#reset-consumption-yes" ).text('Done. Refreshing')
+            refreshPage(2000);
+        }
     });
 });
 

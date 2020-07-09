@@ -3,7 +3,7 @@ namespace Honest;
 
 class Person
 {
-    const BARCODE_LENGTH = 12;
+    const BARCODE_LENGTH = 15;
 
     /* @var Db */
     private $db;

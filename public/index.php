@@ -122,6 +122,8 @@
                 <a href="/history.php">
                     <button>View History</button>
                 </a>
+                <button id="reset-consumption">Reset consumption</button>
+                <button id="reset-consumption-yes">Yes - Reset</button>
             </div>
         </div>
     </div>

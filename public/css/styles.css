@@ -11,6 +11,11 @@ svg.avo {
     height: 200px;
 }
 
+#reset-consumption-yes {
+    display: none;
+    background-color: red;
+}
+
 h2 {
     font-size: 36px;
     color: white;

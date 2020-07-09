@@ -1,7 +1,7 @@
 version: "2.1"
 
 volumes:
-  mariadb-data:
+  mariadb-data-food:
 
 services:
   
@@ -41,9 +41,8 @@ services:
     container_name: honestyfood-mariadb
     working_dir: /application
     volumes:
-      - mariadb-data:/config/databases
+      - mariadb-data-food:/config/databases
     #  - ./mariadb-data:/config/databases
-    #command: bash -c "echo 'sleeping' && sleep 30 && echo 'creating' && /usr/bin/mysql -proot -e 'CREATE DATABASE IF NOT EXISTS honestyfood character set UTF8mb4 collate utf8mb4_bin;' && echo 'importing' && /usr/bin/mysql -proot honestyfood < /application/create-tables.sql"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=honestyfood

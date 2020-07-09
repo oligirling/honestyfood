@@ -50,6 +50,20 @@ class Db
         return $stmt;
     }
 
+    public static function resetConsumption()
+    {
+        $db = self::instance();
+        $db->run('DROP TABLE IF EXISTS `consumption`;');
+        return $db->run(
+            'CREATE TABLE `consumption` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `food` char(55) DEFAULT NULL,
+  `person` varchar(55) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
+    }
+
     public static function resetDb()
     {
         $db = self::instance();
