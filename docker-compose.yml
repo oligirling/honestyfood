@@ -19,8 +19,8 @@ services:
       PHP_POST_MAX_SIZE: 250
       PHP_UPLOAD_MAX_FILESIZE: 250
     # remove the volume when using pi
-    volumes:
-      - .:/var/www/html
+    #volumes:
+    #  - .:/var/www/html
 
   wpe:
     restart: always
