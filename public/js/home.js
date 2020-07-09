@@ -1,6 +1,3 @@
-$("#user-barcode").focus();
-$("#user-barcode").triggerHandler( "focus" );
-
 $( "form#scan-user" ).submit(function( event ) {
     event.preventDefault();
     $('.person-box').fadeTo( "slow" , 0, function () {
@@ -89,8 +86,11 @@ $(".modal-toggle").on( "click", function(e) {
 });
 
 $('#showInputSubmit').on('change', function() {
+    $('.user-barcode').toggleClass('trans');
+    $('.food-barcode').toggleClass('trans');
     $('.dev-element').toggleClass('hidden');
 });
+
 $('#showGenerateButton').on('change', function() {
     toggleGenerateButton();
 });

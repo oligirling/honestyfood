@@ -5,11 +5,11 @@ volumes:
 
 services:
   
-  alpine-nginx-php-container:
+  alpine-nginx-php-container-food:
     build:
       context: ./
       dockerfile: ./nginx-php.Dockerfile
-    container_name: alpine-nginx-php-container
+    container_name: alpine-nginx-php-container-food
     ports:
       - "80:80"
       - "443:443"
@@ -19,8 +19,8 @@ services:
       PHP_POST_MAX_SIZE: 250
       PHP_UPLOAD_MAX_FILESIZE: 250
     # remove the volume when using pi
-    #volumes:
-    #  - .:/var/www/html
+    volumes:
+      - .:/var/www/html
 
   wpe:
     restart: always
@@ -32,17 +32,16 @@ services:
       - "8080:8080"
     command: bash -c "echo 'sleeping for 60' && sleep 60 && /wpe-init"
     depends_on:
-      - alpine-nginx-php-container
+      - alpine-nginx-php-container-food
 
-  honestyfood-mariadb:
+  honesty-food-mariadb:
     build:
       context: ./
       dockerfile: ./Dockerfile.mariadb
-    container_name: honestyfood-mariadb
+    container_name: honesty-food-mariadb
     working_dir: /application
     volumes:
       - mariadb-data-food:/config/databases
-    #  - ./mariadb-data:/config/databases
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=honestyfood

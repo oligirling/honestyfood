@@ -54,6 +54,7 @@ RUN addgroup -S $WWW_USER && adduser -D -S -h /var/cache/$WWW_USER -s /sbin/nolo
 # Copy files and folders into image
 COPY config/nginx_default.conf /etc/nginx/conf.d/default.conf
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 COPY . /var/www/html
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

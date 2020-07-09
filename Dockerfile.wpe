@@ -13,5 +13,5 @@ RUN wget -O tohora.tgz \
 
 COPY public /var/lib/public_html
 
-ENV WPE_URL="http://alpine-nginx-php-container"
+ENV WPE_URL="http://alpine-nginx-php-container-food"
 ENV WPE_BCMRPI_CURSOR=1
